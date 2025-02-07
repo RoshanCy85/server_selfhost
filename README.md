@@ -23,6 +23,20 @@ sudo nano /etc/netplan/00-installer-config.yaml
 
 Find the section that starts with eth0 (or the name of your network interface, such as enp3s0 or ens33).
 Modify it to look like this:
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses:
+        - 192.168.1.100/24
+      gateway4: 192.168.1.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4
+
 
 Replace 192.168.1.100 with the static IP you want for your server and 192.168.1.1 with your router's IP address
 
